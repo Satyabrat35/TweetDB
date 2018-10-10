@@ -1,0 +1,36 @@
+url = "http://127.0.0.1:5000/api2?param1=xxxx&param2=yyyy"
+      where xxxx,yyyy = args
+
+Params - 
+
+1. favct - Filters FavouriteCount 
+	   format - l10 , e2, g6 where l = less than or equal to, g = greater than or equal to, e = equal to
+
+2. rtct - Filters RetweetCount
+	  format - l10 , e2, g6 where l = less than or equal to, g = greater than or equal to, e = equal to
+
+3. lang - Specifies Language type 
+	  format - Value must be in ISO639-2 encoded form eg: for Hindi it will be 'hi', English='en', German='de' etc.
+
+4. start - Specifies starting index for pagination 
+	   format - 10, 5 ,6 or any integer value
+
+5. end - Specifies closing index for pagination
+	 format - 10, 5 ,6 or any integer value
+
+6. twtext - Specifies searching filter for Tweet Text
+	    format - a) hello - If you are sure about the complete word ie hello
+		     b) ^hello - If the word starts with hello and ends with different characters eg- helloabc
+		     c) hello$ - If the word ends with hello but starts with different character eg- abchello
+		     d) .*hello.* - If the word contains hello but has different starting and ending characters 
+			            eg- xyzhelloabc
+
+7. uname - Specifies searching filter for Username
+	   format - same as of twtext
+
+8. sort - Provides sorting mechanism on basis of argument
+	  format - If you want to sort by datetime pass datetime. Similarly for FavouriteCount use favct, rtct for 
+		   Retweet Counts. Can provide a single argument at a time.
+
+9. date - Filters on basis of Date time
+	  format -  yyyy-mm-dd eg: 2018-07-13 etc.
