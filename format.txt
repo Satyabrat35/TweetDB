@@ -6,7 +6,7 @@ Params -
 1. favct - Filters FavouriteCount 
 	   format - l10 , e2, g6 where l = less than or equal to, g = greater than or equal to, e = equal to
 
-2. rtct - Filters RetweetCount
+2. rtct - Filters ReplyCounts
 	  format - l10 , e2, g6 where l = less than or equal to, g = greater than or equal to, e = equal to
 
 3. lang - Specifies Language type 
@@ -17,6 +17,7 @@ Params -
 
 5. end - Specifies closing index for pagination
 	 format - 10, 5 ,6 or any integer value
+	 Note - end value must be greater than start value
 
 6. twtext - Specifies searching filter for Tweet Text
 	    format - a) hello - If you are sure about the complete word ie hello
@@ -29,8 +30,8 @@ Params -
 	   format - same as of twtext
 
 8. sort - Provides sorting mechanism on basis of argument
-	  format - If you want to sort by datetime pass datetime. Similarly for FavouriteCount use favct, rtct for 
-		   Retweet Counts. Can provide a single argument at a time.
+	  format - If you want to sort by Timestamp pass 'date'. Similarly for FavouriteCount use 'favct', 'rtct' for 
+		   ReplyCounts. Can provide a single argument at a time.
 
 9. date - Filters on basis of Date time
 	  format -  yyyy-mm-dd eg: 2018-07-13 etc.
