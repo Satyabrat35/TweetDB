@@ -1,6 +1,7 @@
 import pymongo
 import pprint
 from bson.json_util import dumps
+from myjson import convert_csv
 
 try:
     print("Connecting ...")
@@ -151,3 +152,27 @@ def sorting(sort_val):
 		sort_val = 'Timestamp'
 	
 	return sort_val
+
+
+def csv_writer():
+	show_page = 0
+	start_page = 30
+	betterfilter = {}
+
+	cursor = tz.find(betterfilter).skip(show_page).limit(start_page)
+
+	flattened_records = []
+	for record in cursor:
+		flattened_record = {
+			'Username': record['Username'],
+			'Device': record['SourceDevice'],
+			'Tweet': record['TweetText'],
+			'Language': record['Language'],
+			'FavouriteCounts': record['FavouriteCount'],
+			'ReplyCounts': record['ReplyCount']
+		}
+		flattened_records.append(flattened_record)
+	
+	convert_csv(flattened_records)
+
+	return True

@@ -1,10 +1,9 @@
 
 import json
-import pyexcel
 from flask import make_response, jsonify, Response
-import io
+import csv
 
-
+# create a json response ----
 def jsonresponse(data=None):
     json_res = None
 
@@ -12,29 +11,19 @@ def jsonresponse(data=None):
         json_res = '{}'
     else:
         json_res = json.dumps(data, sort_keys=True, ensure_ascii=False, indent=4)
-    json_res = json.loads(json_res)
-
-    stored = jsonstore(json_res)
     
     return Response(json_res, mimetype="application/json")
 
-# create a json file  ----
-def jsonstore(data):
-    
-    with open('script.txt', 'w') as fi:
-        fi.write(data.decode())
 
-    return True
-
-'''
 # create a csv method ----
-def json_to_csv():
-    infile = open('script.json', 'r')
-    outfile = open('data.csv', 'w')
-    writer = csv.writer(outfile)
-    for row in json.loads(infile.read()):
-        writer.write(row)
+def convert_csv(flattened_records):
+    print("omg kelly")
+    with open('script.csv', 'w') as outfile:
+        fields = ['Username', 'Device', 'Tweet', 'Language', 'FavouriteCounts', 'ReplyCounts']
+        write = csv.DictWriter(outfile, fieldnames=fields)
+        write.writeheader()
+        for flattened_record in flattened_records:
+            write.writerow(flattened_record)
 
     return True
-'''
 

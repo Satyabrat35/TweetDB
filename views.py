@@ -1,7 +1,7 @@
-from selfy1 import TweetDbz
+from selfy import TweetDbz
 from myjson import jsonresponse
-from flask import Flask, request, jsonify
-from db import query
+from flask import Flask, request, Response
+from db import query, csv_writer
 
 app = Flask(__name__)
 
@@ -29,12 +29,10 @@ def apione():
         res['message'] = "Stream started with {}".format(keywords)
     except Exception as ex:
         res['status'] = "error"
-        #res['message'] = ex.message
-        #res['arguments'] = ex.args
 
     return jsonresponse(res)
 
-@app.route('/api2')
+@app.route('/api2',methods=['GET', 'POST'])
 def apitwo():
     try:
         start = int(request.args.get('start'))
@@ -65,6 +63,15 @@ def apitwo():
         res['status'] = 'error'
         return jsonresponse(res)
 
+@app.route('/api3', methods=['GET', 'POST'])
+def apithree():
+    csv_writer()
+    result = {
+        'Message': 'Success',
+        'Result': 'CSV file is present in folder with name script.csv'
+    }
+
+    return jsonresponse(result)
 
 
 if __name__ == "__main__":

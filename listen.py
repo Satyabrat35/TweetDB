@@ -17,7 +17,6 @@ except:
 
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self,status):
-        #print("we are here also")
         tags = []
         for tag in status.entities['hashtags']:
             tags.append(tag['text'])
