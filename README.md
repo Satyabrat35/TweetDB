@@ -111,13 +111,13 @@ Successful response will yield -
 
 ## Tools and Framework used - 
 - Python-Flask
-- Twitter Streamin API
+- Twitter Streaming API
 - MongoDB
 
 ## Setup and Run Project - 
 - Git clone the following repo
 - Make sure you have Python and MongoDB installed in your local machine
 - Install the requirements
-		pip install -r requirements.txt
+	```pip install -r requirements.txt```
 - Run the server file
-		python3 server.py
+	```python3 server.py```
