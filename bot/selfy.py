@@ -1,10 +1,10 @@
 import tweepy
-from listen import MyStreamListener
+from bot.listen import MyStreamListener
 import time
-consumer_key = "DwQ8ex1DfR7MXnG3RcGZ9N5YD"
-consumer_secret = "SBfSmvwdqj35MkFUmvK3hCGjuhsNnCBE3VKq74WdECkwwxjtAR"
-access_token = "1113651799-UtGRf9e2eD0JeC2mXH05IaeBggP5sG3ANNPfd6P"
-access_token_secret = "leQwB8GcDatCArnx7OGdqssoZpxdz41YBKcjxptJ8fUnf"
+consumer_key = "<consumer-key>"
+consumer_secret = "<consumer-secret>"
+access_token = "<access-token>"
+access_token_secret = "<access-token-secret>"
 
 try:
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
@@ -18,7 +18,7 @@ except:
 
 class TweetDbz(object):
     def filtering(self, keywords):
-        print("we are here")
+        #print("we are here")
         sleeptime = 30
         listener = MyStreamListener()
         streamer = tweepy.Stream(auth=auth, listener=listener)

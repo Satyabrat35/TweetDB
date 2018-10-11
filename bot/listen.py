@@ -5,7 +5,7 @@ import datetime
 
 try:
     print("Connecting ...")
-    cluster_uri = "mongodb+srv://analytics:analytics-password@mycluster-zuqqr.mongodb.net/test?retryWrites=true"
+    cluster_uri = "<your-mongodb-compass-cluster-uri>"
     client = pymongo.MongoClient(cluster_uri)
     db = client['test']
     tz = db.tweet

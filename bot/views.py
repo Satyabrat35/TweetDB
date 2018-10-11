@@ -1,13 +1,14 @@
-from selfy import TweetDbz
-from myjson import jsonresponse
+from bot.selfy import TweetDbz
+from bot.myjson import jsonresponse
 from flask import Flask, request, Response
-from db import query, csv_writer
+import json
+from bot.db import query, csv_writer
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1> Vamos </h1>'
+    return '<h1> Hola!!! Bienvenido a TweetDB </h1>'
 
 @app.route('/api1')
 def apione():
@@ -21,7 +22,7 @@ def apione():
             res = {
                 "status": "error",
                 "message": "Provide keywords",
-                "example": "/api1?keywords=lfc,uefa,ucl"
+                "example": "/api1?keywords=modi,Brexit"
             }
             return jsonresponse(res)
         TweetDbz().filtering(keywords=keywords)
@@ -56,7 +57,9 @@ def apitwo():
         favct = favct if favct is not None else "zero"
 
         result = query(twtext,uname,sort_val,end,start,date,favct,rtct,lang,sname)
-        return jsonresponse(result)
+        res = json.dumps(result, indent=4, sort_keys=True, ensure_ascii=False)
+        res = json.loads(res)
+        return Response(res, mimetype="application/json")
 
     except Exception as ex:
         res = dict()
@@ -74,5 +77,3 @@ def apithree():
     return jsonresponse(result)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
