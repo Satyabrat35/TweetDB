@@ -1,5 +1,6 @@
 import tweepy
 import pymongo
+import datetime
 
 
 try:
@@ -8,7 +9,7 @@ try:
     client = pymongo.MongoClient(cluster_uri)
     db = client['test']
     tz = db.tweet
-    print("Done :)")
+    print("Done :) stream")
 except:
     print("Could'nt Connect")
 
@@ -16,7 +17,7 @@ except:
 
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self,status):
-        print("we are here also")
+        #print("we are here also")
         tags = []
         for tag in status.entities['hashtags']:
             tags.append(tag['text'])
@@ -27,6 +28,11 @@ class MyStreamListener(tweepy.StreamListener):
         else:
             country = ""
             country_code = ""
+
+        ts = float(status.timestamp_ms)
+        ts = ts/1000
+        timestamp = datetime.datetime.fromtimestamp(float(ts))
+        time_date = timestamp.strftime('%Y-%m-%d')
         
         tweet_dict = {
             "Name": status.user.screen_name,
@@ -38,7 +44,7 @@ class MyStreamListener(tweepy.StreamListener):
             "CountryCode": country_code,
             "TweetText": status.text,
             "FavouriteCount": status.favorite_count,
-            "Timestamp": status.timestamp_ms,
+            "Timestamp": time_date,
             "CreatedAt": status.created_at,
             "ReplyCount": status.reply_count,
             "Language": status.lang,
